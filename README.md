@@ -1,11 +1,12 @@
 **Game Jam \- Illusion**  
 This project was created over a weekend during a **game jam** with the theme **"Illusion"**. Developed in **C** using the **CSFML** library, it explores the mechanics of **mirages**.
+Be careful for your mind.
 
 **🔹 Controls:**
 
 * **W, A, S, D**: Move around the game.  
 * **P**: Increase your speed during gameplay.  
-* You have **10 seconds** to eat an apple before the time runs out\!
+* You have **20 seconds** to eat an apple before the time runs out\!
 
 **🔹 Compilation and execution:**
 

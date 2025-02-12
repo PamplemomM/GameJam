@@ -164,7 +164,7 @@ static int transition(rect_t *player, room_t *room)
         DO_THEN(make_room(ROOM_X_SIZE, ROOM_Y_SIZE), room = *get_room());
         player->other = room->intmap[(int)(player->pos.y / BLOCK_SIZE) * room->size.x + (int)(player->pos.x / BLOCK_SIZE)];
         DO_THEN(DO_THEN(transition->other = 0, done = 1), cpt = 1);
-        find_text("Timer")->other = 11;
+        find_text("Timer")->other = 21;
         return 0;
     }
     IFDO(cpt >= 17, done = -1);
@@ -181,7 +181,7 @@ int game_launch()
 {
     sfEvent event;
 
-    DO_THEN(make_room(ROOM_X_SIZE, ROOM_Y_SIZE), find_text("Timer")->other = 11);
+    DO_THEN(make_room(ROOM_X_SIZE, ROOM_Y_SIZE), find_text("Timer")->other = 21);
     find_rect("player")->other = (*get_room())->intmap[(int)(find_rect("player")->pos.y / BLOCK_SIZE) * (*get_room())->size.x + (int)(find_rect("player")->pos.x / BLOCK_SIZE)];
     find_sprite("transition")->type = 1;
     DO_THEN(find_text("score")->other = 0, find_rect("player")->speed = 1);
@@ -190,6 +190,7 @@ int game_launch()
         draw_map2d((*get_room()));
         move_player(event, (*get_room()));
         draw_all_sprites();
+        drawrays(*get_room(), event);
         analyse_events(event);
         transition(find_rect("player"), *get_room());
         sfRenderWindow_display(*get_window());

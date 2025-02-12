@@ -35,12 +35,12 @@ rect_t *find_rect(char *name)
     return NULL;
 }
 
-void create_rect(char *name, sfVector2f position, int size)
+rect_t *create_rect(char *name, sfVector2f position, int size)
 {
     rect_t *new_rect = malloc(sizeof(rect_t));
 
     if (new_rect == NULL)
-        return;
+        return NULL;
     new_rect->name = my_strdup(name);
     new_rect->shape = sfRectangleShape_create();
     sfRectangleShape_setSize(new_rect->shape, (sfVector2f){size, size});
@@ -49,14 +49,15 @@ void create_rect(char *name, sfVector2f position, int size)
     sfRectangleShape_setFillColor(new_rect->shape, sfWhite);
     new_rect->color = sfWhite;
     sfRectangleShape_setOutlineColor(new_rect->shape, (sfColor){128, 128, 128, 255});
-    new_rect->outline = (sfColor){120, 120, 120};
     sfRectangleShape_setOutlineThickness(new_rect->shape, 1);
-    new_rect->thickness = 1;
+    new_rect->height = 0;
+    new_rect->distance = 1;
     new_rect->rotation = 0.0;
     new_rect->hide = 1;
     new_rect->other = 0.0;
     new_rect->speed = 1.0;
     rect_add(new_rect);
+    return new_rect;
 }
 
 static void rect_destroy(rect_t *rect)

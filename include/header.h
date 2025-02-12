@@ -33,6 +33,14 @@
     #define BLOCK_SIZE 50
     #define MAP_OBSTACLES 10
     #define FRUIT_NUMBER 4
+    #define CAST_SPEED 10 // speed of the cast projection, the faster it goes, the less precise it is
+    #define FOV 120 // Field of view, in angle
+    #define FOV_PRECISION 1.5 // ray cast by angle, here, one ray each 2 degree
+    #define STARTX 400
+    #define STARTY 0
+    #define SCREEN_SIZE_X 16
+    #define SCREEN_SIZE_Y 16
+    #define RENDER_DISTANCE 830
 
 typedef struct room {
     int **map;
@@ -80,6 +88,8 @@ typedef struct rect_s {
     sfColor color;
     sfColor outline;
     int thickness;
+    float height;
+    float distance;
     float rotation;
     int hide;
     float other;
@@ -130,7 +140,7 @@ void free_word_array(char **wa);
 //rect_lib.c
 rect_t **all_rects(void);
 rect_t *find_rect(char *name);
-void create_rect(char *name, sfVector2f position, int size);
+rect_t *create_rect(char *name, sfVector2f position, int size);
 void reset_all_rects(void);
 void move_rect(rect_t *rect, float x, float y);
 
@@ -158,5 +168,9 @@ void free_current_room(void);
 void print_map(void);
 void make_room(int x, int y);
 void replace_char(char *ch, char chifn, char chnew, char chelse);
+
+// raycast.c
+int init_raycasters(void);
+void drawrays(room_t *room, sfEvent event);
 
 #endif /* HEADER_H */

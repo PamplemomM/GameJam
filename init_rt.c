@@ -40,7 +40,7 @@ void init_sprites(void)
     init_env(find_rect("player"));
     create_text("Timer", (sfVector2f){50, 200}, 2, "polices/Bebas.ttf");
     sfText_setString(find_text("Timer")->text, "Time remaining : 00");
-    find_text("Timer")->other = 11;
+    find_text("Timer")->other = 21;
     sfText_setOutlineThickness(find_text("Timer")->text, 3);
     create_text("score", (sfVector2f){50, 50}, 2, "polices/Bebas.ttf");
     sfText_setString(find_text("score")->text, "");
@@ -49,4 +49,5 @@ void init_sprites(void)
     sprite_create("timer", "images/timer.png", (sfVector2f){1750, 50});
     sfSprite_setTextureRect(find_sprite("timer")->sprite, (sfIntRect){0, 0, 62, 120});
     find_sprite("timer")->other = 1;
+    init_raycasters();
 }
